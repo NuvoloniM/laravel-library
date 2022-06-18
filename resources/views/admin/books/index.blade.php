@@ -9,6 +9,7 @@
         <th scope="col">Image</th>
         <th scope="col">Anno di Publicazione</th>
         <th scope="col">Descrizione</th>
+        <th scope="col">Azioni</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +22,9 @@
             </td>
             <td>{{$book->edition_year}}</td>
             <td>{{$book->description}}</td>
+            <td>
+                <a href="{{route('admin.books.show', $book->id)}}" class="btn btn-primary">view</a>
+            </td>
           </tr>
         @endforeach
     </tbody>
