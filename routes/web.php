@@ -27,4 +27,8 @@ Route::middleware('auth')
     Route::get('/', 'HomeController@index')->name('home');
 });
 
-
+// alla fine di questo file aggiungiamo una pagina di fallback che va a mappare tutte le rotte non intercettate nelle istruzioni precedenti
+// restituisce la view principale 
+Route::get("{any?}", function(){
+    return view("guest.home");
+})->where("any", ".*");
