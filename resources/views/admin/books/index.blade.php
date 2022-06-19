@@ -31,6 +31,7 @@
             <td>{{$book->description}}</td>
             <td>
                 <a href="{{route('admin.books.show', $book->id)}}" class="btn btn-primary">view</a>
+                <a href="{{route('admin.books.edit', $book->id)}}" class="btn btn-warning">edit</a>
             </td>
           </tr>
         @endforeach

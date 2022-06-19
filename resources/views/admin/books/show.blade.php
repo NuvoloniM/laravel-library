@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  @include('includes.message')
     <div class="card mx-auto" style="width: 18rem;">
         <img src="{{$book->image}}" class="card-img-top" alt="{{$book->title}}">
         <div class="card-body">

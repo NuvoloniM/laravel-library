@@ -63,9 +63,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
-        //
+        return view('admin.books.edit', compact('book'));
     }
 
     /**
@@ -75,9 +75,13 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $data = $request->all();
+
+        $book->update($data);
+        $book->save();
+        return redirect()->route('admin.books.show', compact('book'))->with('message', "Hai modificato con successo: $book->title");
     }
 
     /**
