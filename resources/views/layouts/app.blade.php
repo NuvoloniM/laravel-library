@@ -36,6 +36,9 @@
                         <li>
                             <a href="{{route('admin.books.index')}}">Library</a>
                         </li>
+                        <li>
+                            <a href="{{route('admin.authors.index')}}">Authors</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

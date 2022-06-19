@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     protected $fillable = [
-        'title', 'image', 'edition_year', 'description',
+        'title', 'image', 'edition_year', 'description', 'author_id',
     ];
 
     // creo funzion che mi dice in che relazione è con una tabella

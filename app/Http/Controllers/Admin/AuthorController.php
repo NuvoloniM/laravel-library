@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Book;
+use App\Models\Author;
 
-class BookController extends Controller
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        return view('admin.books.index', compact('books'));
+        $authors = Author::all();
+
+        return view('admin.authors.index', compact('authors'));
     }
 
     /**
@@ -26,7 +27,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.books.create');
+        return view('admin.authors.create');
     }
 
     /**
@@ -39,11 +40,11 @@ class BookController extends Controller
     {
         $data = $request->all();
 
-        $new_book = new Book();
-        $new_book->fill($data);
-        $new_book->save();
+        $new_author = new Author();
+        $new_author->fill($data);
+        $new_author->save();
 
-        return redirect()->route('admin.books.index')->with('message', "Hai creato un nuovo libro : $new_book->title");
+        return redirect()->route('admin.authors.index')->with('message', "Hai creato con successo un nuovo autore: $new_author->name");
     }
 
     /**
@@ -52,9 +53,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show(Author $author)
     {
-        return view('admin.books.show', compact('book'));
+        return view('admin.authors.show', compact('author'));
     }
 
     /**
@@ -63,9 +64,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Book $book)
+    public function edit(Author $author)
     {
-        return view('admin.books.edit', compact('book'));
+        return view('admin.authors.edit', compact('author'));
     }
 
     /**
@@ -75,13 +76,13 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(Request $request, Author $author)
     {
         $data = $request->all();
 
-        $book->update($data);
-        $book->save();
-        return redirect()->route('admin.books.show', compact('book'))->with('message', "Hai modificato con successo: $book->title");
+        $author->update($data);
+        $author->save();
+        return redirect()->route('admin.authors.show', compact('author'))->with('message', "Hai modificato con successo: $author->name");
     }
 
     /**
@@ -90,9 +91,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Book $book)
+    public function destroy(Author $author)
     {
-        $book->delete();
-        return redirect()->route('admin.books.index')->with('message', 'hai eliminato il libro con successo');
+        $author->delete();
+        return redirect()->route('admin.authors.index')->with('message', 'Hai eliminato con successo un autore');
     }
 }

@@ -26,6 +26,7 @@ Route::middleware('auth')
 ->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::resource('/books', 'BookController');
+    Route::resource('/authors', 'AuthorController');
 });
 
 // alla fine di questo file aggiungiamo una pagina di fallback che va a mappare tutte le rotte non intercettate nelle istruzioni precedenti

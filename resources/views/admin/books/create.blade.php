@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{route('admin.books.create')}}" >
+        <form method="POST" action="{{route('admin.books.store')}}" >
             @csrf
             <div class="form-group">
               <label for="title">Inserisci il Titolo</label>
