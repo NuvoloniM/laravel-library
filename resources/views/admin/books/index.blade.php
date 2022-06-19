@@ -1,6 +1,13 @@
 @extends('layouts.app');
 
 @section('content')
+<h1 class="text-uppercase text-primary text-center">Book List</h1>
+
+{{-- includo pop-up message --}}
+@include('includes.message')
+<div class="mb-3">
+    <a class="btn btn-info" href="{{route('admin.books.create')}}"> Aggiungi un nuovo libro alla lista</a>
+</div>
 <table class="table">
     <thead class="thead-dark">
       <tr>
