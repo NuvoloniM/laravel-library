@@ -9,8 +9,11 @@
           <h5 class="card-title">{{$book->title}}</h5>
           <h6 class="card-title">{{$book->edition_year}}</h6>
           <p class="card-text">{{$book->description}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          @include('includes.deleteBook')
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+  <script src="{{asset('js/deleteMessage.js')}}"></script>
 @endsection

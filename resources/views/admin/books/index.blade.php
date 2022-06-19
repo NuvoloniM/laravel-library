@@ -32,9 +32,14 @@
             <td>
                 <a href="{{route('admin.books.show', $book->id)}}" class="btn btn-primary">view</a>
                 <a href="{{route('admin.books.edit', $book->id)}}" class="btn btn-warning">edit</a>
+                @include('includes.deleteBook')
             </td>
           </tr>
         @endforeach
     </tbody>
   </table>
+@endsection
+
+@section('scripts')
+  <script src="{{asset('js/deleteMessage.js')}}"></script>
 @endsection

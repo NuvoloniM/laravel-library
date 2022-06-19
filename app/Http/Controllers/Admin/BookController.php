@@ -90,8 +90,9 @@ class BookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('admin.books.index')->with('message', 'hai eliminato il libro con successo');
     }
 }
