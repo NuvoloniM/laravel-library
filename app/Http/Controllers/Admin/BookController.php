@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Author;
 
 class BookController extends Controller
 {
@@ -26,7 +27,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.books.create');
+        // mi creo un array di dati collegati alla nostra tabella da poter utilizzare nella create 
+        $authors = Author::all();
+        return view('admin.books.create' , compact('authors'));
     }
 
     /**
@@ -65,7 +68,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.books.edit', compact('book'));
+        $authors = Author::all();
+        return view('admin.books.edit', compact('book', 'authors'));
     }
 
     /**

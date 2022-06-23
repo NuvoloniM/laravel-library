@@ -13,6 +13,17 @@
               <input type="text" class="form-control" id="image" name="image">
             </div>
             <div class="form-group">
+              <label for="author">Seleziona l'autore</label>
+              <select name="author_id" id="author">
+                <option value="">Nessun Autore</option>
+                @foreach ($authors as $author)
+                    <option
+                    @if (old('$author->id') == $author->id) selected @endif 
+                    value="{{$author->id}}"> {{$author->name}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
               <label for="edition_year">Inserisci l'anno di pubblicazione dell'edizione</label>
               <input type="number" class="form-control" id="edition_year" name="edition_year">
             </div>

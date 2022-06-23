@@ -14,6 +14,7 @@
         <th scope="col">#</th>
         <th scope="col">Title</th>
         <th scope="col">Image</th>
+        <th scope="col">Author</th>
         <th scope="col">Anno di Publicazione</th>
         <th scope="col">Descrizione</th>
         <th scope="col">Azioni</th>
@@ -26,6 +27,13 @@
             <td>{{$book->title}}</td>
             <td>
                 <img src="{{$book->image}}" alt="{{$book->title}}" style="width: 200px">
+            </td>
+            <td>
+              @if ($book->author)
+                  {{$book->Author->name}}
+              @else
+               -    
+              @endif
             </td>
             <td>{{$book->edition_year}}</td>
             <td>{{$book->description}}</td>
