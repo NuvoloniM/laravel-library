@@ -19,6 +19,7 @@ class BookSeeder extends Seeder
            $new_book = new Book();
            
            $new_book->fill($book);
+        //    $new_book->genre()->sync($book['genres_id']);
            $new_book->save();
         }
     }

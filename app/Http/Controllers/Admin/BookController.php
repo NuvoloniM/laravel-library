@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Genre;
 use App\Models\Author;
 
 class BookController extends Controller
@@ -29,7 +30,8 @@ class BookController extends Controller
     {
         // mi creo un array di dati collegati alla nostra tabella da poter utilizzare nella create 
         $authors = Author::all();
-        return view('admin.books.create' , compact('authors'));
+        $genres = Genre::all();
+        return view('admin.books.create' , compact('authors', 'genres'));
     }
 
     /**
@@ -44,7 +46,9 @@ class BookController extends Controller
 
         $new_book = new Book();
         $new_book->fill($data);
+        if ( array_key_exists( 'genres', $data ) )  $book->genre()->attach($data['genres']);
         $new_book->save();
+
 
         return redirect()->route('admin.books.index')->with('message', "Hai creato un nuovo libro : $new_book->title");
     }
@@ -69,7 +73,10 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $authors = Author::all();
-        return view('admin.books.edit', compact('book', 'authors'));
+        $genres = Genre::all();
+
+        $book_genre_id = $book->genre->pluck('id')->toArray();
+        return view('admin.books.edit', compact('book', 'authors', 'genres', 'book_genre_id'));
     }
 
     /**
@@ -84,7 +91,10 @@ class BookController extends Controller
         $data = $request->all();
 
         $book->update($data);
+        if ( array_key_exists( 'genres', $data ) )  $book->genre()->sync( $data['genres'] );
         $book->save();
+
+
         return redirect()->route('admin.books.show', compact('book'))->with('message', "Hai modificato con successo: $book->title");
     }
 
