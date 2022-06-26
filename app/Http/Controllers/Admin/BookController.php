@@ -8,6 +8,8 @@ use App\Models\Book;
 use App\Models\Genre;
 use App\Models\Author;
 
+use Illuminate\Support\Facades\Storage;
+
 class BookController extends Controller
 {
     /**
@@ -45,6 +47,13 @@ class BookController extends Controller
         $data = $request->all();
 
         $new_book = new Book();
+
+        // caricamento di immagini da file 
+        if(array_key_exists('image', $data)){
+            $image_url = Storage::put('books_images', $data['image'] );
+            $data['image'] = $image_url;
+        }
+
         $new_book->fill($data);
         if ( array_key_exists( 'genres', $data ) )  $book->genre()->attach($data['genres']);
         $new_book->save();
@@ -89,6 +98,14 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $data = $request->all();
+
+        // caricamento immagine tramite file 
+        if(array_key_exists('image', $data)){
+            if( $book->image ) Storage::delete($book->image);
+
+            $image_url = Storage::put('books_images', $data['image'] );
+            $data['image'] = $image_url;
+        }
 
         $book->update($data);
         if ( array_key_exists( 'genres', $data ) )  $book->genre()->sync( $data['genres'] );

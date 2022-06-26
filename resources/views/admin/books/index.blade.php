@@ -26,7 +26,7 @@
             <th>{{$book->id}}</th>
             <td>{{$book->title}}</td>
             <td>
-                <img src="{{$book->image}}" alt="{{$book->title}}" style="width: 200px">
+                <img src="{{asset("storage/$book->image")}}" alt="{{$book->title}}" style="width: 200px">
             </td>
             <td>
               @if ($book->author)

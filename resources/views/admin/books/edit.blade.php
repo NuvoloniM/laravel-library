@@ -2,17 +2,21 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{route('admin.books.update', $book->id)}}" >
+        <form method="POST" action="{{route('admin.books.update', $book->id)}}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="form-group">
               <label for="title">Inserisci il Titolo</label>
               <input type="text" class="form-control" id="title" name="title" value="{{old('title', $book->title)}}">
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="image">Inserisci l'URL dell'immagine</label>
               <input type="text" class="form-control" id="image" name="image" value="{{old('image', $book->image)}}">
-            </div>
+            </div> --}}
+            <div class="form-group">
+              <label for="image">Immagine del post</label>
+              <input type="file" class="form-control-file" id="image" placeholder="url dell'immagine" name="image">
+          </div>
             <div class="form-group">
               <label for="author">Seleziona l'autore</label>
               <select name="author_id" id="author">
